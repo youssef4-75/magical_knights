@@ -14,7 +14,6 @@ class ServicesManager(Singleton):
         return self.repeller.repel(*args, **kwargs)
 
     def draw(self, *args, **kwargs):
-        print("drawing...")
         return self.drawer.draw(*args, **kwargs)
 
     def translate(self, *args, **kwargs):

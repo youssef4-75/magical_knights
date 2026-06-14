@@ -33,7 +33,6 @@ class ObjectsContainer(OrderedLake):
         removing = []
         for obj in self.objects:
             if not obj.is_alive():
-                print(obj)
                 removing.append(obj)
         for _ in removing:
             self.objects.remove(_)

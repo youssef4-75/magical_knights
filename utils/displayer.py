@@ -1,6 +1,9 @@
 from pygame import Color, Rect, Surface
+import pygame as pg
 from screen import Window
 from typing import Callable
+
+pg.font.init()
 
 
 
@@ -27,6 +30,9 @@ class Displayer:
         self._observable = observable_obj
         self._value_provider = value_provider
         self._max_provider = max_provider
+
+        self._message = ""
+        self._duration = 0
     
     @property
     def current_value(self) -> int:
@@ -58,3 +64,18 @@ class Displayer:
         
         # Draw to window
         self.window.draw(bg_surf, self.rect)
+
+        self.display_text()
+
+    def show_info(self, message: str, duration: int):
+        self._message = message
+        self._duration = duration
+        
+    def display_text(self):
+        print(self._duration)
+        if self._duration <= 0: return
+        font = pg.font.Font(None, 24)
+        text_surf = font.render(self._message, True, (255, 255, 255), bgcolor=(0, 0, 0))
+        text_rect = text_surf.get_rect(midbottom=(self.rect.centerx , self.rect.centery))
+        self.window.draw(text_surf, text_rect)
+        self._duration -= 1
