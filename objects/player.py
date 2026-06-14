@@ -24,3 +24,9 @@ class Player(GameObject):
 
     def __repr__(self) -> str:
         return f"Player<{self.name}, color={self.color}, rect={self.rect}>"
+
+    def draw(self, window):
+        ...
+
+    def translate(self):
+        ...

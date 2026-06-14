@@ -46,3 +46,13 @@ class GameObject(ABC):
 
     def set_accel(self, accel: Vector):
         self.__accel = accel
+
+    @abstractmethod
+    def draw(self, window):
+        """this tells the drawer manager how this object is drawn in the window"""
+        ...
+
+    @abstractmethod
+    def translate(self):
+        """this tells the translator manager how this objects receive motions from the user input"""
+        ...

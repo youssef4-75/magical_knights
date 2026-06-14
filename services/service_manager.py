@@ -18,3 +18,6 @@ class ServicesManager(Singleton):
 
     def translate(self, *args, **kwargs):
         return self.translator.translate(*args, **kwargs)
+
+
+

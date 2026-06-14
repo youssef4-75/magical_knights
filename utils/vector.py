@@ -1,4 +1,6 @@
 import math
+from random import randint
+from typing import Any
 
 class Vector:
     """A 2D vector class for game development with common vector operations."""
@@ -8,25 +10,25 @@ class Vector:
         self.y = y
     
     # Basic operations
-    def __add__(self, other):
+    def __add__(self, other: 'Vector'|Any) -> Vector:
         """Add two vectors: v1 + v2"""
         if isinstance(other, Vector):
             return Vector(self.x + other.x, self.y + other.y)
         return Vector(self.x + other, self.y + other)
     
-    def __sub__(self, other):
+    def __sub__(self, other: 'Vector'):
         """Subtract two vectors: v1 - v2"""
         if isinstance(other, Vector):
             return Vector(self.x - other.x, self.y - other.y)
         return Vector(self.x - other, self.y - other)
     
-    def __mul__(self, other):
+    def __mul__(self, other: 'Vector'):
         """Multiply vector by scalar: v * scalar"""
         if isinstance(other, Vector):
             return Vector(self.x * other.x, self.y * other.y)
         return Vector(self.x * other, self.y * other)
     
-    def __rmul__(self, other):
+    def __rmul__(self, other: 'Vector'):
         """Scalar multiplication: scalar * v"""
         return self.__mul__(other)
     
@@ -40,7 +42,7 @@ class Vector:
         """Negate vector: -v"""
         return Vector(-self.x, -self.y)
     
-    def __eq__(self, other):
+    def __eq__(self, other: 'Vector'):
         """Check equality: v1 == v2"""
         return self.x == other.x and self.y == other.y
     
@@ -82,27 +84,27 @@ class Vector:
             self.y /= mag
         return self
     
-    def dot(self, other):
+    def dot(self, other: 'Vector'):
         """Calculate dot product: v1 · v2"""
         return self.x * other.x + self.y * other.y
     
-    def cross(self, other):
+    def cross(self, other: 'Vector'):
         """Calculate cross product (2D scalar cross product)."""
         return self.x * other.y - self.y * other.x
     
-    def distance_to(self, other):
+    def distance_to(self, other: 'Vector'):
         """Calculate distance to another vector."""
         dx = self.x - other.x
         dy = self.y - other.y
         return math.sqrt(dx * dx + dy * dy)
     
-    def distance_squared_to(self, other):
+    def distance_squared_to(self, other: 'Vector'):
         """Calculate squared distance to another vector."""
         dx = self.x - other.x
         dy = self.y - other.y
         return dx * dx + dy * dy
     
-    def angle_to(self, other):
+    def angle_to(self, other: 'Vector'):
         """Calculate angle (in radians) between this vector and another."""
         dot_product = self.dot(other)
         mag_product = self.magnitude() * other.magnitude()
@@ -154,7 +156,7 @@ class Vector:
             self.y + (target.y - self.y) * t
         )
     
-    def project_onto(self, other):
+    def project_onto(self, other: 'Vector'):
         """Project this vector onto another vector."""
         other_normalized = other.normalize()
         dot_product = self.dot(other_normalized)
@@ -204,6 +206,11 @@ class Vector:
         """Return right direction vector."""
         return cls(1, 0)
     
+    @classmethod
+    def random(cls, max_X, max_Y):
+        """return a random vector"""
+        return cls(randint(0, max_X), randint(0, max_Y))
+        
     # Conversion methods
     def to_tuple(self):
         """Convert to tuple (x, y)."""

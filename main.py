@@ -13,6 +13,8 @@ from screen import Window
 
 control1 = ControlPannel(pg.K_UP, pg.K_DOWN, pg.K_LEFT, pg.K_RIGHT)
 control2 = ControlPannel(pg.K_w, pg.K_s, pg.K_a, pg.K_d)
+# control3 = ControlPannel(pg.K_y, pg.K_h, pg.K_g, pg.K_j)
+# control4 = ControlPannel(pg.K_f, pg.K_v, pg.K_c, pg.K_b)
 
 
 services_manager = ServicesManager(
@@ -21,15 +23,22 @@ services_manager = ServicesManager(
     PlayerTranslator(),
 )
 
-win = Window("Game", *(800, 600))
+win_size =  (800, 600)
+win = Window("Game", *win_size)
 
 lake = ObjectsContainer()
 
 @lake.add_to_me
-def player(): return Player("me", "red", (30, 30), control1)
+def player(): return Player("me", "red", Vector.random(*win_size).to_tuple(), control1)
 
 @lake.add_to_me
-def player(): return Player("you", "blue", (300, 300), control2)
+def player(): return Player("you", "blue", Vector.random(*win_size).to_tuple(), control2)
+
+# @lake.add_to_me
+# def player(): return Player("you", "green", Vector.random(*win_size).to_tuple(), control3)
+
+# @lake.add_to_me
+# def player(): return Player("you", "yellow", Vector.random(*win_size).to_tuple(), control4)
 
 # player = Player("me", "red")
 # lake.add(player)
@@ -40,11 +49,11 @@ while win.running:
     win.fill((0, 0, 0))
     for event in win.events():
         if event.type == pg.KEYDOWN and event.key == pg.K_SPACE:
-            sm.repel(player, 30*Vector.up())
+            services_manager.repel(player, 30*Vector.up())
     
     for p in lake:
-        sm.draw(win, p)
-        sm.translate(p)
+        services_manager.draw(win, p)
+        services_manager.translate(p)
 
 
     lake.interaction()
