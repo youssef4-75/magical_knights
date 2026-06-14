@@ -1,11 +1,10 @@
 import pygame as pg
 
-from utils.variables import MAX_HP, MAX_MP, PLAYER_SIZE, SPEED
+from utils import MAX_HP, MAX_MP, PLAYER, PLAYER_SIZE, SPEED
 
 from .control_pannel import ControlPannel
 from .game_object import GameObject
 
-from utils import Vector
 
 
 class Player(GameObject):
@@ -18,7 +17,10 @@ class Player(GameObject):
         self.MP = MAX_MP
         self.speed = SPEED
         self.control = control_pannel
+
+    def typeIdentifier(self):
+        return PLAYER
         
 
-    def __str__(self) -> str:
-        return f"Player<{self.name}, color={self.color}>"
+    def __repr__(self) -> str:
+        return f"Player<{self.name}, color={self.color}, rect={self.rect}>"

@@ -1,12 +1,11 @@
 
 
 
-from abc import ABC
+from abc import ABC, abstractmethod
 
 import pygame as pg
 
-from utils import Vector
-from utils.variables import K, SPEED_LIMIT
+from utils import Vector, K, SPEED_LIMIT
 
 
 class GameObject(ABC):
@@ -17,6 +16,9 @@ class GameObject(ABC):
         self.__surf.fill(color)
         self.__vel = Vector()
         self.__accel = Vector()
+    
+    @abstractmethod
+    def typeIdentifier(self): ...
     
     @property
     def rect(self):

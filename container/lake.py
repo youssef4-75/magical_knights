@@ -6,8 +6,8 @@ from typing import Any
 
 
 class Lake[E]:
-    def __init__(self, window, *objects: E) -> None:
-        self.window = window
+    def __init__(self, *objects: E) -> None:
+        
         self.objects = list(objects)
 
     def add(self, *elements: E):
@@ -24,7 +24,5 @@ class Lake[E]:
         for i in self.objects:
             yield i
 
-    def add_to_me(self, object_creator):
-        o = object_creator()
-        self.add(o)
-        return o
+    def __len__(self):
+        return len(self.objects)
