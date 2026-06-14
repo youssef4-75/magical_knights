@@ -6,6 +6,11 @@ class PlayerInteraction:
         self.__HP = HP
         self.__MP = MP
 
+    @property
+    def HP(self): return self.__HP
+    @property
+    def MP(self): return self.__MP
+
     def damage(self, damage: int):
         print(f"received damage: {damage}, HP remaining: {self.__HP}")
         self.__HP -= damage

@@ -7,6 +7,7 @@ from objects import ControlPannel, Player
 
 from utils import Vector
 from screen import Window
+from utils.displayer import Displayer
 
 
 
@@ -15,6 +16,7 @@ control1 = ControlPannel(pg.K_UP, pg.K_DOWN, pg.K_LEFT, pg.K_RIGHT)
 control2 = ControlPannel(pg.K_w, pg.K_s, pg.K_a, pg.K_d)
 control3 = ControlPannel(pg.K_y, pg.K_h, pg.K_g, pg.K_j)
 control4 = ControlPannel(pg.K_f, pg.K_v, pg.K_c, pg.K_b)
+
 
 
 services_manager = ServicesManager(
@@ -30,6 +32,7 @@ lake = ObjectsContainer()
 
 @lake.add_to_me
 def player(): return Player("me", "red", Vector.random(*win_size).to_tuple(), control1)
+# displayer = Displayer(win, "grey", "red", pg.Rect(10, 10, 100, 20), value_provider = (lambda : lake[0].interact.HP), max_provider = lambda :100)
 
 @lake.add_to_me
 def player(): return Player("you", "blue", Vector.random(*win_size).to_tuple(), control2)
@@ -55,10 +58,12 @@ while win.running:
         services_manager.draw(win, p)
         services_manager.translate(p)
 
-
     lake.interaction()
     lake.garbage_collect()
+    displayer.display()
     win.display()
+
+
 
 
 

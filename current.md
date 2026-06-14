@@ -1,9 +1,8 @@
-done: created the interaction mechanism
-currently on: the life mechanisms
+done: 
+- created the interaction mechanism
+- the life and death distinction
+
+currently on: displaying additional info
 
 next:
-- alive
-- death state
-- time to live
-- damage creation through direct interaction
-- default interaction (repulsion) for all objects type
+- a block to display HP and MP
