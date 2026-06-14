@@ -21,23 +21,19 @@ class ObjectsContainer(OrderedLake):
     def interaction(self):
         self.update()
         interacted = set()
+        for axe in ["X", "Y"]:
+            for p1, p2 in self.through_axe(axe):
+                p1: GameObject; p2: GameObject
+                if (p1, p2) not in interacted and p1.rect.colliderect(p2.rect):
+                    interacted.add((p1, p2))
+                    InteractionsRegistry.default(p1, p2)
+                    InteractionsRegistry.map(p1.typeIdentifier(), p2.typeIdentifier())(p1, p2)
         
-        for p1, p2 in self.through_X():
-            p1: GameObject; p2: GameObject
-            if (p1, p2) not in interacted and p1.rect.colliderect(p2.rect):
-                interacted.add((p1, p2))
-                InteractionsRegistry.map(p1.typeIdentifier(), p2.typeIdentifier())(p1, p2)
-            
-        for p1, p2 in self.through_Y():
-            p1: GameObject; p2: GameObject
-            if (p1, p2) not in interacted and p1.rect.colliderect(p2.rect):
-                interacted.add((p1, p2))
-                InteractionsRegistry.map(p1.typeIdentifier(), p2.typeIdentifier())(p1, p2)
-    
     def garbage_collect(self):
         removing = []
-        for i in self.objects:
-            if not i.is_alive():
-                removing.append(i)
+        for obj in self.objects:
+            if not obj.is_alive():
+                print(obj)
+                removing.append(obj)
         for _ in removing:
             self.objects.remove(_)

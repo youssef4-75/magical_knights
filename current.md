@@ -6,3 +6,4 @@ next:
 - death state
 - time to live
 - damage creation through direct interaction
+- default interaction (repulsion) for all objects type

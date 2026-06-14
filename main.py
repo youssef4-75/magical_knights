@@ -49,7 +49,7 @@ while win.running:
     win.fill((0, 0, 0))
     for event in win.events():
         if event.type == pg.KEYDOWN and event.key == pg.K_SPACE:
-            services_manager.repel(player, 30*Vector.up())
+            ...
     
     for p in lake:
         services_manager.draw(win, p)

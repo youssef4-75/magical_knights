@@ -10,13 +10,7 @@ from utils import PLAYER
 
 @InteractionsRegistry.add_to_me(PLAYER, PLAYER)
 def Player2Player(player1: Player, player2: Player):
-    sm = ServicesManager.single()
-    vector12 = Vector(*player1.rect.center) - Vector(*player2.rect.center)
-    r = vector12.magnitude()
-    if r==0:
-        return 
-    direction = (REPULSE/r) * vector12.normalize()
-    print(direction)
-    sm.repel(player1, -direction)
-    sm.repel(player2, direction)
+    if not player1.interact.is_alive() or not player2.interact.is_alive():
+        return
+    
     

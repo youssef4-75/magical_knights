@@ -49,6 +49,10 @@ class GameObject(ABC):
     def is_alive(self):
         return self.__TTL > 0
 
+    @property
+    def vel(self):
+        return self.__vel
+
     def set_accel(self, accel: Vector):
         self.__accel += accel
 

@@ -1,5 +1,6 @@
-from utils import PLAYER
-from objects import Player
+from objects import GameObject
+from services import ServicesManager
+from utils import Vector, REPULSE
 
 
 
@@ -23,5 +24,16 @@ class InteractionsRegistry:
                 min(class1, class2), max(class1, class2)
             ] = function
         return deco
+
+    @staticmethod
+    def default(obj1: GameObject, obj2: GameObject):
+        sm = ServicesManager.single()
+        vector12 = Vector(*obj1.rect.center) - Vector(*obj2.rect.center)
+        r = vector12.magnitude()
+        if r==0:
+            return 
+        direction = (REPULSE/r) * vector12.normalize()
+        sm.repel(obj1, direction)
+        sm.repel(obj2, -direction)
 
 
