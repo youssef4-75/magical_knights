@@ -1,7 +1,7 @@
 
 
 
-from command_exception import ReWriteCommandException
+from exceptions import ReWriteCommandException
 
 
 class ControlPannel:

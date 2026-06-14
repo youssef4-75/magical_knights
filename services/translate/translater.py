@@ -3,8 +3,7 @@
 
 from abc import ABC, abstractmethod
 
-from game_object import GameObject
-from window import Window
+from objects import GameObject
 
 
 class Translater(ABC):

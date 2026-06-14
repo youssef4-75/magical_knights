@@ -4,10 +4,8 @@
 
 from abc import ABC, abstractmethod
 
-from pygame import Window
-
-from game_object import GameObject
-from player import Player
+from screen import Window
+from objects import GameObject
 
 
 class Drawer(ABC):

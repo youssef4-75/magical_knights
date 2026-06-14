@@ -1,8 +1,8 @@
 
 
 
-from player import Player
-from window import Window
+from objects import Player
+from screen import Window
 from .drawer import Drawer
 
 

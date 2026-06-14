@@ -2,8 +2,8 @@
 
 
 
-from game_object import GameObject
-from vector import Vector
+from objects import GameObject
+from utils import Vector
 
 
 class Repeller:

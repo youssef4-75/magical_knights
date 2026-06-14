@@ -5,7 +5,8 @@ from abc import ABC
 
 import pygame as pg
 
-from vector import Vector
+from utils import Vector
+from utils.variables import K, SPEED_LIMIT
 
 
 class GameObject(ABC):
@@ -31,13 +32,13 @@ class GameObject(ABC):
 
     def move(self, direction: Vector):
         direction = direction.normalize() * self.speed
-        direction.limit_ip(70)
+        direction.limit_ip(SPEED_LIMIT)
         self.__rect.move_ip(direction.x, direction.y)
 
     def advance(self):
-        self.__accel -= 0.2 * self.__vel
+        self.__accel -= K * self.__vel
         self.__vel += self.__accel
-        self.__vel.limit_ip(70)
+        self.__vel.limit_ip(SPEED_LIMIT)
         self.__rect.move_ip(self.__vel.x, self.__vel.y)
         self.__accel = Vector()
 

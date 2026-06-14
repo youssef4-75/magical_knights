@@ -3,7 +3,7 @@
 
 
 
-from game_object import GameObject
+from objects import GameObject
 from .lake import Lake
 
 

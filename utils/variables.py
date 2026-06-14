@@ -1,0 +1,11 @@
+
+
+K = 0.2
+
+MAX_HP = 100
+MAX_MP = 100
+
+PLAYER_SIZE = (30, 30)
+
+SPEED = 30
+SPEED_LIMIT = 70

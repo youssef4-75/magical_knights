@@ -1,15 +1,14 @@
 
 import pygame as pg
-from player import Player
-from vector import Vector
-from window import Window
+from objects import Player
+from utils import Vector
 from .translater import Translater
 
 
 class PlayerTranslater(Translater):
     def translate(self, player: Player):
         keys = pg.key.get_pressed()
-        vector = Vector(0, 0)
+        vector = Vector()
         if keys[player.control.directions["up"]]:
             vector += Vector.up()
         if keys[player.control.directions["down"]]:
