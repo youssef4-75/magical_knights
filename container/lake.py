@@ -24,5 +24,7 @@ class Lake[E]:
         for i in self.objects:
             yield i
 
-    def add_to_me(self, player):
-        self.add(player())
+    def add_to_me(self, object_creator):
+        o = object_creator()
+        self.add(o)
+        return o

@@ -3,7 +3,7 @@ import pygame as pg
 
 from container.objects_container import ObjectsContainer
 from services.force.repeller import Repeller
-from services.translate.player_translater import PlayerTranslater
+from services.translate.player_translater import PlayerTranslator
 from objects import ControlPannel, Player
 
 from services import PlayerDrawer
@@ -19,7 +19,7 @@ control = ControlPannel(pg.K_UP, pg.K_DOWN, pg.K_LEFT, pg.K_RIGHT)
 
 repeller = Repeller()
 drawer = PlayerDrawer()
-translater = PlayerTranslater()
+translater = PlayerTranslator()
 
 win = Window("Game", *(800, 600))
 
@@ -36,7 +36,7 @@ while win.running:
     win.fill((0, 0, 0))
     for event in win.events():
         if event.type == pg.KEYDOWN and event.key == pg.K_SPACE:
-            repeller.repel(p, 30*Vector.up())
+            repeller.repel(player, 30*Vector.up())
     
     for p in lake:
         drawer.draw(win, p)

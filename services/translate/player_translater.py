@@ -2,10 +2,10 @@
 import pygame as pg
 from objects import Player
 from utils import Vector
-from .translater import Translater
+from .translater import Translator
 
 
-class PlayerTranslater(Translater):
+class PlayerTranslator(Translator):
     def translate(self, player: Player):
         keys = pg.key.get_pressed()
         vector = Vector()
