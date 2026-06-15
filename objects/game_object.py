@@ -3,71 +3,34 @@
 
 from abc import ABC, abstractmethod
 
-import pygame as pg
-
-from utils import Vector, K, SPEED_LIMIT, Pointable
+from objects.interaction_mixin import InteractionMixin
 
 
-class GameObject(ABC):
-    def __init__(self, left, top, width, height, color, TTL=float("inf")) -> None:
-        super().__init__()
-        self.__rect = pg.Rect(left, top, width, height)
-        self.__surf = pg.Surface((width, height))
-        self.__surf.fill(color)
-        self.__vel = Vector()
-        self.__accel = Vector()
-        self.__TTL = TTL
+from .life_mixin import LifeMixin
+from .motion_mixin import MotionMixin
+from .shape_mixin import ShapeMixin
+
+
+class GameObject(ABC, MotionMixin, ShapeMixin, LifeMixin, InteractionMixin):
+    def __init__(self, left, top, width, height, color=None, speed=0, *, TTL=float("inf"), HP=100, **kwargs) -> None:
+        # super().__init__()
+        MotionMixin.start(self, left, top, width, height, speed)
+        ShapeMixin.start(self, width, height, color)
+        LifeMixin.start(self, TTL, HP)
+        InteractionMixin.start(self, **kwargs)
     
     @abstractmethod
     def typeIdentifier(self): ...
-    
-    @property
-    def rect(self):
-        return self.__rect
-
-    @property
-    def surf(self):
-        return self.__surf
-    
-    @property
-    def accel(self):
-        return self.__accel
-
-    def move(self, direction: Vector):
-        direction = direction.normalize() * self.speed
-        direction.limit_ip(SPEED_LIMIT)
-        self.__rect.move_ip(direction.x, direction.y)
-
-    def advance(self):
-        self.__accel -= K * self.__vel
-        self.__vel += self.__accel
-        self.__vel.limit_ip(SPEED_LIMIT)
-        self.__rect.move_ip(self.__vel.x, self.__vel.y)
-        self.__accel =  Vector()
-        self.__TTL -= 1
-
-    def is_alive(self):
-        return self.__TTL > 0
-
-    @property
-    def vel(self):
-        return self.__vel
-
-    def set_accel(self, accel: Vector):
-        self.__accel += accel
 
     @abstractmethod
     def draw(self, window):
         """this tells the drawer manager how this object is drawn in the window"""
-        ...
 
     @abstractmethod
     def translate(self):
         """this tells the translator manager how this objects receive motions from the user input"""
-        ...
 
-    def x(self):
-        return self.rect.x
-
-    def y(self):
-        return self.rect.y
+    def advance(self):
+        self.advance_rect()
+        self.advance_surf()
+        self.advance_life()

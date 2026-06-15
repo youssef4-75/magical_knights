@@ -1,6 +1,5 @@
 import pygame as pg
 
-
 from game.game_manager import GameManager
 
 from objects import ControlPannel, Player
@@ -10,9 +9,11 @@ from utils import Vector
 
 
 # ------------------------- 1. creating the game ---------------------
+
+
+
 win_size = (800, 600)
 game = GameManager.init("Magical Knights", win_size)
-
 
 
 
@@ -40,7 +41,7 @@ def player(): return Player("you", "yellow", Vector.random(*win_size).to_tuple()
 # ------------------------- 3. Adding displayers ---------------------
 
 def value_provider(player: Player):
-    return player.interact.HP 
+    return player.HP
 
 
 r = []

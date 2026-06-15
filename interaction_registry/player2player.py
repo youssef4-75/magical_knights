@@ -10,7 +10,7 @@ from utils import PLAYER
 
 @InteractionsRegistry.add_to_me(PLAYER, PLAYER)
 def Player2Player(player1: Player, player2: Player):
-    if not player1.interact.is_alive() or not player2.interact.is_alive():
+    if not player1.is_alive() or not player2.is_alive():
         return
     
     
