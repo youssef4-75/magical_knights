@@ -11,7 +11,6 @@ class Player(GameObject):
     """A class to represent a player in the game"""
     def __init__(self, name, color, init_pos, control_pannel: ControlPannel):
         super().__init__(*init_pos, *PLAYER_SIZE, color, SPEED, HP=MAX_HP, MP=MAX_MP)
-
         self.name = name
         self.control = control_pannel
 

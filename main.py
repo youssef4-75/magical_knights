@@ -1,11 +1,13 @@
 import pygame as pg
 
+from animation.animation import Animation
 from game.game_manager import GameManager
 
 from objects import ControlPannel, Player
 
 from screen.background import WithBackGround
 from utils import Vector
+from utils.variables import PLAYER_SIZE
 
 
 # ------------------------- 1. creating the game ---------------------
@@ -24,9 +26,13 @@ control2 = ControlPannel(pg.K_w, pg.K_s, pg.K_a, pg.K_d)
 control3 = ControlPannel(pg.K_y, pg.K_h, pg.K_g, pg.K_j)
 control4 = ControlPannel(pg.K_f, pg.K_v, pg.K_c, pg.K_b)
 
+animation = Animation.from_directory("./assets/anim_set01/0x1", PLAYER_SIZE)
+
 @game.add
-def player(): return Player("me", "red", Vector.random(*win_size).to_tuple(), control1)
-# displayer = Displayer(win, "grey", "red", pg.Rect(10, 10, 100, 20), value_provider = (lambda : game.addct.HP), max_provider = lambda :100)
+def player(): 
+    p = Player("me", "red", Vector.random(*win_size).to_tuple(), control1)
+    p.attach_animation(animation)
+    return p
 
 @game.add
 def player(): return Player("you", "blue", Vector.random(*win_size).to_tuple(), control2)
@@ -36,6 +42,7 @@ def player(): return Player("you", "green", Vector.random(*win_size).to_tuple(),
 
 @game.add
 def player(): return Player("you", "yellow", Vector.random(*win_size).to_tuple(), control4)
+
 
 
 # ------------------------- 3. Adding displayers ---------------------

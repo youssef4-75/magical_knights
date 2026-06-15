@@ -1,5 +1,7 @@
 
 
+FRAME_SPEED = 20
+
 K = 0.2
 
 MAX_HP = 100

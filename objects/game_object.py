@@ -11,9 +11,9 @@ from .motion_mixin import MotionMixin
 from .shape_mixin import ShapeMixin
 
 
-class GameObject(ABC, MotionMixin, ShapeMixin, LifeMixin, InteractionMixin):
+class GameObject(MotionMixin, ShapeMixin, LifeMixin, InteractionMixin, ABC):
     def __init__(self, left, top, width, height, color=None, speed=0, *, TTL=float("inf"), HP=100, **kwargs) -> None:
-        # super().__init__()
+        
         MotionMixin.start(self, left, top, width, height, speed)
         ShapeMixin.start(self, width, height, color)
         LifeMixin.start(self, TTL, HP)

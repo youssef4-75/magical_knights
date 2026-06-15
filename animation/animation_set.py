@@ -126,7 +126,7 @@ class AnimationSet:
     
     # @init_method
     @classmethod
-    def from_directory(cls, frame_speed, directory: str, size: tuple=None, separator: str="x"):
+    def from_directory(cls, directory: str, size: tuple=None, separator: str="x", *, frame_speed: int):
         """
         directory: is a path for a directory containing other directories
             each subdirectory is transformed into an animation
