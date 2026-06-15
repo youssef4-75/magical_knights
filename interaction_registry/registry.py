@@ -1,10 +1,11 @@
 from objects import GameObject
 from utils import Vector, REPULSE
+from .interactions_dictionary import registry
 
 
 
-class InteractionsRegistry:
-    registry = {}
+class InteractionsRegistryManager:
+    registry = registry
 
     def __init__(self, map) -> None:
         pass
@@ -13,13 +14,13 @@ class InteractionsRegistry:
     def map(class1, class2):
         if class2 < class1: 
             class1, class2 = class2, class1 
-        return InteractionsRegistry.registry.get((class1, class2), lambda *__, **_:None)
+        return InteractionsRegistryManager.registry.get((class1, class2), lambda *__, **_:None)
     
 
     @staticmethod
     def add_to_me(class1, class2):
         def deco(function):
-            InteractionsRegistry.registry[
+            InteractionsRegistryManager.registry[
                 min(class1, class2), max(class1, class2)
             ] = function
         return deco

@@ -1,7 +1,7 @@
 import pygame as pg
 
 from objects.conscious_mixin import ConsciousMixin
-from utils import MAX_HP, MAX_MP, PLAYER, PLAYER_SIZE, SPEED
+from utils import MAX_HP, MAX_MP, PLAYER_CLASS, PLAYER_SIZE, SPEED
 
 from .game_object import GameObject
 
@@ -15,7 +15,7 @@ class Player(GameObject, ConsciousMixin):
         self.name = name
 
     def typeIdentifier(self):
-        return PLAYER
+        return PLAYER_CLASS
     
     def __repr__(self) -> str:
         return f"Player<{self.name}, rect={self.rect}, alive={self.is_alive()}>"

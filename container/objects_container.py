@@ -4,7 +4,7 @@
 
 
 from container.ordered_lake import OrderedLake
-from interaction_registry import InteractionsRegistry
+from interaction_registry import InteractionsRegistryManager
 from objects import GameObject
 
 
@@ -26,8 +26,8 @@ class ObjectsContainer(OrderedLake):
                 p1: GameObject; p2: GameObject
                 if (p1, p2) not in interacted and p1.rect.colliderect(p2.rect):
                     interacted.add((p1, p2))
-                    InteractionsRegistry.default(p1, p2)
-                    InteractionsRegistry.map(p1.typeIdentifier(), p2.typeIdentifier())(p1, p2)
+                    InteractionsRegistryManager.default(p1, p2)
+                    InteractionsRegistryManager.map(p1.typeIdentifier(), p2.typeIdentifier())(p1, p2)
         
     def garbage_collect(self):
         removing: list[GameObject] = []

@@ -14,4 +14,5 @@ v2.1: damage
 currently on: enhance the games visuals
 
 next:
-- the user input
+- refactoring the folders
+- refoactoring the game main file

@@ -1,4 +1,4 @@
 
 
-from .registry import InteractionsRegistry
-from .player2player import *
+from .registry import InteractionsRegistryManager
+from .interactions_dictionary import registry
