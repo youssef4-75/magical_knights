@@ -207,7 +207,7 @@ class AnimationSet:
         
         if state is None or state not in self.__animations:
             state = self.__state
-            print("AnimationSet: state is None or not in animations, using current state")
+            # print("AnimationSet: state is None or not in animations, using current state")
         animation = self.get_animation  # get the current animation
         
         if animation is None: return None

@@ -1,8 +1,4 @@
 
-
-
-from services import ServicesManager
-from utils import Vector
 from utils.variables import REPULSE
 from .registry import InteractionsRegistry
 from objects import Player

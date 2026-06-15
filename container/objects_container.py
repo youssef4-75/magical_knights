@@ -30,9 +30,10 @@ class ObjectsContainer(OrderedLake):
                     InteractionsRegistry.map(p1.typeIdentifier(), p2.typeIdentifier())(p1, p2)
         
     def garbage_collect(self):
-        removing = []
+        removing: list[GameObject] = []
         for obj in self.objects:
             if not obj.is_alive():
                 removing.append(obj)
         for _ in removing:
             self.objects.remove(_)
+            _.die()

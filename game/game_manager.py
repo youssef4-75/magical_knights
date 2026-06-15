@@ -2,21 +2,16 @@
 import pygame as pg
 
 from container.objects_container import ObjectsContainer
+from objects.conscious_mixin import ConsciousMixin
 from screen import Window
-from services import ServicesManager
-from services.draw.drawer import Drawer
-from services.force.repeller import Repeller
-from services.translate.player_translater import PlayerTranslator
 from utils.displayer import PlayerDisplayer
 from utils.displayer_abc import DisplayerABC
 
 
 class GameManager:
     def __init__(self, win: Window, 
-            serviceManager: ServicesManager,
             lake: ObjectsContainer) -> None:
         self.window = win
-        self.smana = serviceManager
         self.lake = lake
         self.displayers: list[DisplayerABC] = []
         
@@ -24,11 +19,6 @@ class GameManager:
     def init(cls, name: str, win_size: tuple[int, int]):
         return cls(
             Window(name, *win_size),
-            ServicesManager(
-                Drawer(),
-                Repeller(),
-                PlayerTranslator()
-            ),
             ObjectsContainer()
         )
 
@@ -54,13 +44,14 @@ class GameManager:
         self.displayers.append(displayer)
 
     def loop(self):
-
         self.window.activate_plugins()
 
         for p in self.lake:
-            self.smana.translate(p)
-            self.smana.draw(self.window, p)
-
+            p.draw(self.window)
+            if isinstance(p, ConsciousMixin):
+                # print(p.actions)
+                p.act(player=p, game=self)
+        
         for displayer in self.displayers:
             displayer.display()
 
