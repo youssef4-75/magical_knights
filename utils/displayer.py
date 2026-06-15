@@ -3,20 +3,22 @@ import pygame as pg
 from screen import Window
 from typing import Callable
 
+from utils.displayer_abc import DisplayerABC
+
 pg.font.init()
 
 
 
-class Displayer:
+class PlayerDisplayer(DisplayerABC):
     def __init__(self, 
-                 win: Window, 
-                 bg_color: Color, 
-                 color: Color, 
-                 rect: Rect, 
-                 /, 
-                 observable_obj,
-                 value_provider: Callable[[], int],  # Injected function that returns current value
-                 max_provider: Callable[[], int] | None = None):
+            win: Window, 
+            bg_color: Color, 
+            color: Color, 
+            rect: Rect, 
+            /, 
+            observable_obj,
+            value_provider: Callable[[], int],  # Injected function that returns current value
+            max_provider: Callable[[], int] | None = None):
         """
         Args:
             value_provider: Function that returns the current value to display
@@ -25,7 +27,7 @@ class Displayer:
         self.color = color
         self.bg = bg_color
         self.rect = rect
-        self.window = win
+        self.__window = win
         self.max = max_provider() if max_provider else 100
         self._observable = observable_obj
         self._value_provider = value_provider
@@ -46,6 +48,10 @@ class Displayer:
             return self._max_provider()
         return self.max
     
+    @property
+    def window(self):
+        return self.__window
+
     def display(self) -> None:
         """Display the current state without manual setting"""
         # Calculate percentage
@@ -64,18 +70,3 @@ class Displayer:
         
         # Draw to window
         self.window.draw(bg_surf, self.rect)
-
-        self.display_text()
-
-    def show_info(self, message: str, duration: int):
-        self._message = message
-        self._duration = duration
-        
-    def display_text(self):
-        print(self._duration)
-        if self._duration <= 0: return
-        font = pg.font.Font(None, 24)
-        text_surf = font.render(self._message, True, (255, 255, 255), bgcolor=(0, 0, 0))
-        text_rect = text_surf.get_rect(midbottom=(self.rect.centerx , self.rect.centery))
-        self.window.draw(text_surf, text_rect)
-        self._duration -= 1

@@ -7,7 +7,7 @@ from objects import ControlPannel, Player
 
 from utils import Vector
 from screen import Window
-from utils.displayer import Displayer
+from utils.displayer import PlayerDisplayer
 
 
 
