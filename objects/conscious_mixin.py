@@ -12,7 +12,7 @@ from utils.vector import Vector
 
 class ConsciousMixin:
     def __init__(self) -> None:
-        self.__keys_actions: dict[list[int], list[Callable, int]]
+        self.__keys_actions: dict[list[int], tuple[Callable, int, int, list[int]]]
         self.__console: dict[str, int]
 
     @staticmethod
@@ -30,14 +30,21 @@ class ConsciousMixin:
 
     def act(self, **context):
         keys_map = pg.key.get_pressed()
-        for keys, (action, mana) in self.__keys_actions.items():
+        for keys, (action, mana, cooldown, last_time_used) in self.__keys_actions.items():
+            if last_time_used[0]<cooldown: 
+                last_time_used[0] += 1
+                continue
             casted = True
             for key in keys:
                 if not keys_map[key]:
                     casted = False
             if casted:
                 cani = self.to_life_mixin(mana)
-                if cani: action(**context)
+                if cani: 
+                    last_time_used[0] = 0
+                    action(**context)
+
+
         
         vector = Vector()
         if keys_map[self.console["up"]]:
@@ -51,8 +58,8 @@ class ConsciousMixin:
 
         self.to_motion_mixin(vector)
 
-    def add_action(self, *keys: int, mana, action: Callable): 
-        self.__keys_actions[keys] = [action, mana]
+    def add_action(self, *keys: int, mana: int, cooldown: int, initial_delay: int, action: Callable): 
+        self.__keys_actions[keys] = [action, mana, cooldown, [cooldown-initial_delay]]
 
     def add_console(self, console: dict[str, int]=None, **kwargs):
         if console: 
@@ -63,9 +70,11 @@ class ConsciousMixin:
     def actions(self):
         return self.__keys_actions
     
-    def my_action(self, *keys, mana):
+    def my_action(self, *keys, mana, cooldown, initial_delay):
         def deco(function):
-            self.add_action(*keys, mana=mana, action=function)
+            self.add_action(*keys,
+                mana=mana, cooldown=cooldown, initial_delay=initial_delay, 
+                            action=function)
             return function
         return deco
 
