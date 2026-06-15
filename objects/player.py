@@ -29,7 +29,7 @@ class Player(GameObject):
         return f"Player<{self.name}, color={self.color}, rect={self.rect}, alive={self.is_alive()}>"
 
     def draw(self, window):
-        ...
+        return window.draw(self.surf, self.rect)
 
     def translate(self):
         ...

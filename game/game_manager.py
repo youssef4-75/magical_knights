@@ -4,7 +4,7 @@ import pygame as pg
 from container.objects_container import ObjectsContainer
 from screen import Window
 from services import ServicesManager
-from services.draw.player_drawer import PlayerDrawer
+from services.draw.drawer import Drawer
 from services.force.repeller import Repeller
 from services.translate.player_translater import PlayerTranslator
 from utils.displayer import PlayerDisplayer
@@ -25,7 +25,7 @@ class GameManager:
         return cls(
             Window(name, *win_size),
             ServicesManager(
-                PlayerDrawer(),
+                Drawer(),
                 Repeller(),
                 PlayerTranslator()
             ),

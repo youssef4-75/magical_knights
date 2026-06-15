@@ -7,7 +7,6 @@ from objects import ControlPannel, Player
 
 from screen.background import WithBackGround
 from utils import Vector
-from utils.displayer import PlayerDisplayer
 
 
 # ------------------------- 1. creating the game ---------------------
