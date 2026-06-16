@@ -3,7 +3,7 @@
 
 
 
-from container.ordered_lake import OrderedLake
+from .ordered_lake import OrderedLake
 from interaction_registry import InteractionsRegistryManager
 from objects import GameObject
 

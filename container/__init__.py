@@ -1,1 +1,0 @@
-from .objects_container import ObjectsContainer

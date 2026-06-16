@@ -52,13 +52,8 @@ def player(): return Player("you", "yellow", Vector.random(*win_size).to_tuple()
 
 
 
-# ------------------------- 3. Adding displayers ---------------------
-
+# ------------------------- 3. The window's plugin ---------------------
 disp = WithPDisplayer()
-# game.create_disp_for_players("grey", "red", *r, value_provider=value_provider)
-
-
-# ------------------------- 4. The window's plugin ---------------------
 bg = WithBackGround("assets/bg1.png")
 game.add_plugin(bg, disp)
 # ------------------------- -1. The game loop ---------------------

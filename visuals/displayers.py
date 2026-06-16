@@ -21,8 +21,7 @@ class WithPDisplayer(Plugin):
             displayer.display()
 
     def init(self, game: GameManager):
-
-        for index, p in enumerate(game.to_lake_mixin()):
+        for index, p in enumerate(game.lake):
 
             if p.typeIdentifier() is not PLAYER_CLASS: 
                 continue

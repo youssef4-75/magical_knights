@@ -2,15 +2,16 @@
 import pygame as pg
 
 from .mixins import (
-    DisplayerMixin, LakeMixin, 
-    PluginMixin, WindowMixin
+    LakeMixin, 
+    PluginMixin, 
+    WindowMixin
 )
 
 
 from .screen import Window
 
 
-class GameManager(WindowMixin, LakeMixin, DisplayerMixin, PluginMixin):
+class GameManager(WindowMixin, LakeMixin, PluginMixin):
     def __init__(self, win: Window) -> None:
         super().__init__(win)
 
@@ -34,8 +35,6 @@ class GameManager(WindowMixin, LakeMixin, DisplayerMixin, PluginMixin):
                 # print(p.actions)
                 p.act(player=p, game=self)
 
-        for displayer in self.displayers:
-            displayer.display()
         self.lake.interaction()
         self.lake.garbage_collect()
         self.window.display()
