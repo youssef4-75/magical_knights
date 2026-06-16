@@ -1,8 +1,6 @@
 import pygame as pg
 
 
-from pygame import Window
-
 from ..screen import Window
 
 

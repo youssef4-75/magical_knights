@@ -6,7 +6,7 @@ from game import GameManager
 from objects import Player
 
 from utils import consolify
-from visuals import WithBackGround, WithPDisplayer
+from plugins import WithBackGround, WithPDisplayer
 from utils import Vector, PLAYER_SIZE
 
 
