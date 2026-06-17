@@ -11,13 +11,13 @@ class InteractionMixin(Mixin):
     def start(self, **kwargs):
         self.__data = kwargs
 
-    def get(self, name: str):
+    def get_IV(self, name: str):
         return self.__data.get(name)
 
-    def set(self, name: str, value: Any):
+    def set_IV(self, name: str, value: Any):
         self.__data[name] = value
 
-    def add(self, name: str, value: Any):
+    def add_IV(self, name: str, value: Any):
         if not name in self.__data:
             return
         self.__data[name] += value

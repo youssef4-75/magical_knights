@@ -9,10 +9,12 @@ class MotionMixin(Mixin, Pointable):
         self.__accel: Vector; self.__speed: int
 
     @staticmethod
-    def start(self, left, top, width, height, speed):
+    def start(self, left, top, width, height, 
+            speed, vel: Vector|None=None, 
+            accel: Vector|None=None):
         self.__rect = pg.Rect(left, top, width, height)
-        self.__vel = Vector()
-        self.__accel = Vector()
+        self.__vel = Vector() if not vel else vel 
+        self.__accel = Vector() if not accel else accel 
         self.__speed = speed
 
     @property

@@ -1,10 +1,9 @@
 import pygame as pg
 
 from ..mixins import ConsciousMixin
-from utils import MAX_HP, MAX_MP, PLAYER_CLASS, PLAYER_SIZE, SPEED
-
 from ..game_object import GameObject
 
+from utils import MAX_HP, MAX_MP, PLAYER_CLASS, PLAYER_SIZE, SPEED
 
 
 class Player(GameObject, ConsciousMixin):
@@ -20,8 +19,4 @@ class Player(GameObject, ConsciousMixin):
     def __repr__(self) -> str:
         return f"Player<{self.name}, rect={self.rect}, alive={self.is_alive()}>"
 
-    def draw(self, window):
-        return window.draw(self.surf, self.rect)
 
-    def translate(self):
-        ...

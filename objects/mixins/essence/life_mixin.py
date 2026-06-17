@@ -29,18 +29,20 @@ class LifeMixin(Mixin):
     def advance_life(self):
         self.__TTL -= 1
 
-    def damage(self, amount):
-        self.__HP -= amount 
+    def damage(self, HP_damage):
+        self.__HP -= HP_damage 
         self.__HP = max(0, self.__HP)
 
-    def consume(self, amount):
-        if amount > self.__MP:
+    def consume(self, MP_amount):
+        if MP_amount > self.__MP:
             return False 
-        self.__MP -= amount 
+        self.__MP -= MP_amount 
         return True 
 
     def die(self):
-        print(f"{self} has died")
+        # print(f"{self} has died")
+        ...
 
     def born(self):
-        print(f"{self} has born")
+        # print(f"{self} has born")
+        ...

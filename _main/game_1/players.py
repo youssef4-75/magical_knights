@@ -5,10 +5,11 @@ from game import GameManager
 
 from objects import Player
 
-from utils import consolify
+from utils import consolify, attach_grimoire
 from plugins import WithBackGround, WithPDisplayer
 from utils import Vector, PLAYER_SIZE
 from utils.absolute_path_ext import from_root
+from .actions import grimoire1 
 
 
 def main(game: GameManager, win_size):
@@ -23,15 +24,13 @@ def main(game: GameManager, win_size):
     def player(): 
         p = Player("me", "red", Vector.random(*win_size).to_tuple(), control1)
         p.attach_animation(animation)
-        
         return p
 
     @game.add
+    @attach_grimoire(grimoire1)
     def player(): 
         p = Player("you", "blue", Vector.random(*win_size).to_tuple(), control2)
-        @p.my_action(pg.K_p, mana=10, cooldown=100, initial_delay=20)
-        def jump(player: Player, *a, **k):
-            player.set_accel(10*Vector.up())
+        p.add_actions(grimoire1)
         # p.add_action(pg.K_p, action=jump)
         return p
 

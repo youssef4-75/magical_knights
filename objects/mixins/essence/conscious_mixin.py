@@ -1,10 +1,12 @@
 
 
-from typing import Callable
+from typing import Any, Callable
 import pygame as pg
 
 from .life_mixin import LifeMixin
 from .motion_mixin import MotionMixin
+
+from types_tools import Action
 from utils import Vector
 
 
@@ -58,8 +60,14 @@ class ConsciousMixin:
 
         self.to_motion_mixin(vector)
 
-    def add_action(self, *keys: int, mana: int, cooldown: int, initial_delay: int, action: Callable): 
+    def add_action(self, *keys: int, mana: int, cooldown: int, initial_delay: int, action: Action): 
         self.__keys_actions[keys] = [action, mana, cooldown, [cooldown-initial_delay]]
+
+    def add_actions(self, map: dict[tuple[tuple[int]|int, int, int, int], Action]):
+        for (keys, mana, cooldown, initial_delay), action in map.items():
+            if isinstance(keys, int): keys = (keys,)
+            self.add_action(*keys, mana=mana, cooldown=cooldown, 
+                    initial_delay=initial_delay, action=action)
 
     def add_console(self, console: dict[str, int]=None, **kwargs):
         if console: 

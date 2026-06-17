@@ -29,11 +29,11 @@ class GameManager(WindowMixin, LakeMixin, PluginMixin):
     def loop(self):
 
         self.activate_plugins()
-        for p in self.lake:
-            p.draw(self.window)
-            if p.is_conscious():
+        for gobj in self.lake:
+            self.draw(gobj.surf, gobj.rect)
+            if gobj.is_conscious():
                 # print(p.actions)
-                p.act(player=p, game=self)
+                gobj.act(player=gobj, game=self)
 
         self.lake.interaction()
         self.lake.garbage_collect()
