@@ -3,7 +3,7 @@
 from typing import Literal
 from utils.pointable import Pointable
 from .lake import Lake
-
+from icecream import ic
 
 class OrderedLake(Lake):
     def __init__(self, *objects: Pointable) -> None:
@@ -21,6 +21,12 @@ class OrderedLake(Lake):
             yield point, axe_order[i+1]
 
 
+    def add(self, *elements: Pointable):
+        for element in elements:
+            self.objects.append(element)
+            self.X_order.append(element)
+            self.Y_order.append(element)
+
     def through_X(self):
         for tup in self.through_axe("X"):
             yield tup
@@ -33,11 +39,10 @@ class OrderedLake(Lake):
     def add_to_me(self, object_creator):
         o = object_creator()
         self.add(o)
-        self.X_order.append(o)
-        self.Y_order.append(o)
         return o
 
     def remove(self, object):
+        # ic(self.objects, "\n", self.X_order, "\n", self.Y_order, "\n", object)
         self.objects.remove(object)
         self.X_order.remove(object)
         self.Y_order.remove(object)

@@ -3,6 +3,8 @@
 
 from abc import ABC, abstractmethod
 
+from utils.variables import EDGE_EXPAND
+
 from .mixins import (
     ConsciousMixin, InteractionMixin, 
     LifeMixin, MotionMixin, ShapeMixin
@@ -19,7 +21,7 @@ class GameObject(MotionMixin, ShapeMixin, LifeMixin, InteractionMixin, ABC):
         MotionMixin.start(self, left, top, 
                         width, height, 
                         speed, vel, accel)
-        ShapeMixin.start(self, width, height, color)
+        ShapeMixin.start(self, EDGE_EXPAND*width, EDGE_EXPAND*height, color)
         LifeMixin.start(self, TTL, HP, MP)
         InteractionMixin.start(self, **kwargs)
     

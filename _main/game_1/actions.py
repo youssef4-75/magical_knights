@@ -11,13 +11,13 @@ def jump(player: Player, *a, **k):
     player.set_accel(10*Vector.up())
 
 
-# @actionify_deco(grimoire1, pg.K_p, mana=20, cooldown=120, initial_delay=10)
-# def energy_shooter(player: Player, game: GameManager):
-#     ...
-#     e = Energy(
-#         (player.rect.centerx, player.rect.top - ENERGY_SIZE - 10),
-#         20,
-#         Vector.up()
-#     )
-#     game.append(e)
+@actionify_deco(grimoire1, pg.K_p, mana=9, cooldown=120, initial_delay=10)
+def energy_shooter(player: Player, game: GameManager):
+    e = Energy(
+        (player.rect.centerx, player.rect.top - ENERGY_SIZE - 10),
+        2,
+        Vector.up(),
+        TTL=200
+    )
+    game.append(e)
 

@@ -1,7 +1,8 @@
 
 
-def a(*x):
-    return x[-1]
+
+def reclassify[A](obj1: A) -> A:
+    return obj1
 
 
-print(a(1))
+a = reclassify(3)
