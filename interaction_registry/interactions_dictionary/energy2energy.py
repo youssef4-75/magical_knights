@@ -1,8 +1,9 @@
 
 
-from utils.variables import ENERGY_CLASS
-from .tools import register
+from utils import ENERGY_CLASS
 from objects import Energy
+
+from .tools import register
 
 @register(ENERGY_CLASS, ENERGY_CLASS)
 def Energy2Energy(energy1: Energy, energy2: Energy):

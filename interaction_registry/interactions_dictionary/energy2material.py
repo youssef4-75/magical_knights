@@ -1,7 +1,7 @@
 
 
 
-from utils.variables import ENERGY_CLASS, MATERIAL_CLASS
+from utils import ENERGY_CLASS, MATERIAL_CLASS
 from .tools import reclassify, register
 from objects import Energy, Material
 

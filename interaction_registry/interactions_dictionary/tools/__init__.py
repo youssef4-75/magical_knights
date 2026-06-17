@@ -1,1 +1,1 @@
-from .tools import add_to_registry
+from .tools import add_to_registry, register, reclassify
