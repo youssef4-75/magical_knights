@@ -14,6 +14,7 @@ class Energy(BallSM, ProjectileMM, GameObject):
                 ENERGY_SIZE, speed=speed,
                 TTL=TTL, HP=1, MP=MP, vel=direction, color=color)
         BallSM.start(self, ENERGY_SIZE, color)
+        self.rect.centerx, self.rect.centery = init_pos 
         
 
     def typeIdentifier(self):

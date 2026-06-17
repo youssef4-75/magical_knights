@@ -3,7 +3,7 @@ import pygame as pg
 from ..mixins import ConsciousMixin
 from ..game_object import GameObject
 
-from utils import MAX_HP, MAX_MP, PLAYER_CLASS, PLAYER_SIZE, SPEED
+from utils import MAX_HP, MAX_MP, PLAYER_CLASS, PLAYER_SIZE, SPEED, ENERGY_SIZE
 
 
 class Player(GameObject, ConsciousMixin):
@@ -19,4 +19,10 @@ class Player(GameObject, ConsciousMixin):
     def __repr__(self) -> str:
         return f"Player<{self.name}, rect={self.rect}, alive={self.is_alive()}>"
 
+    def spell_pos(self, *, up=0, left=0, down=0, right=0):
+        if up: up += self.rect.height//2
+        if down: down += self.rect.height//2
+        if left: left += self.rect.width//2
+        if right: right += self.rect.width//2
+        return (self.rect.centerx - left + right, self.rect.centery - up + down )
 

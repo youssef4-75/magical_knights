@@ -7,7 +7,7 @@ from objects import Player
 
 # from plugins import WithBackGround, WithPDisplayer
 from utils import consolify, attach_grimoire, Vector, PLAYER_SIZE, from_root
-from .actions import grimoire1 
+from .actions import grimoire1, grimoire2
 
 
 def main(game: GameManager, win_size):
@@ -19,6 +19,7 @@ def main(game: GameManager, win_size):
     animation = Animation.from_directory(from_root("assets/anim_set01/1x1"), PLAYER_SIZE)
 
     @game.add
+    @attach_grimoire(grimoire2)
     def player(): 
         p = Player("riyad", "red", Vector.random(*win_size).to_tuple(), control1)
         p.attach_animation(animation)

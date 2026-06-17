@@ -11,7 +11,8 @@ class WindowMixin:
 
     # window
     def draw(self, surface: pg.Surface, rect: pg.Rect):
-        return self.window.draw(surface, rect)
+        _rect = surface.get_rect(center=rect.center)
+        return self.window.draw(surface, _rect)
 
     @property
     def screen_size(self):
