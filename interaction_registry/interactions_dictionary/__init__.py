@@ -1,13 +1,15 @@
-from utils import ENERGY_CLASS, PLAYER_CLASS
-
 from .tools import add_to_registry
 
 from .player2energy import Player2Energy
 from .player2player import Player2Player
+from .energy2energy import Energy2Energy
+from .energy2material import Energy2Material
 
 __list__ = [
     Player2Player,
-    Player2Energy
+    Player2Energy,
+    Energy2Energy,
+    Energy2Material,
 ]
 
 registry = {}

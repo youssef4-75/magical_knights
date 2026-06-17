@@ -21,6 +21,8 @@ SPEED = 3
 SPEED_LIMIT = 70
 
 
+TOUCH_DAMAGE = 3
+
 # ---- classes
 PLAYER_CLASS = 0
 ENERGY_CLASS = 1
