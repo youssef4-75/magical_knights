@@ -4,3 +4,4 @@ from .game import *
 from .objects import *
 from .utils import *
 from .plugins import *
+from .interaction_registry import *

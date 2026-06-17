@@ -1,4 +1,4 @@
-from .tools import add_to_registry
+from .tools import add_to_registry, register
 
 from .player2energy import Player2Energy
 from .player2player import Player2Player
