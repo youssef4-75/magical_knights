@@ -8,7 +8,7 @@ class LifeMixin(Mixin):
     def __init__(self) -> None:
         self.__TTL: int; self.__HP: int; self.__MP: int 
 
-    @staticmethod
+    # @staticmethod
     def start(self, TTL: int, HP: int, MP: int):
         self.__HP = HP
         self.__TTL = TTL

@@ -16,14 +16,14 @@ class GameObject(MotionMixin, ShapeMixin, LifeMixin, InteractionMixin, ABC):
             color=None, speed=0, *, 
             TTL=float("inf"), HP=100, 
             MP=100, vel=None, accel=None,
-            **kwargs) -> None:
+            aura=0, **kwargs) -> None:
 
         MotionMixin.start(self, left, top, 
                         width, height, 
                         speed, vel, accel)
         ShapeMixin.start(self, EDGE_EXPAND*width, EDGE_EXPAND*height, color)
         LifeMixin.start(self, TTL, HP, MP)
-        InteractionMixin.start(self, **kwargs)
+        InteractionMixin.start(self, self.rect, aura, **kwargs)
     
     @abstractmethod
     def typeIdentifier(self): ...
@@ -32,6 +32,7 @@ class GameObject(MotionMixin, ShapeMixin, LifeMixin, InteractionMixin, ABC):
         self.advance_rect()
         self.advance_surf()
         self.advance_life()
+        self.advance_interaction()
     
     def is_conscious(self):
         return isinstance(self, ConsciousMixin)

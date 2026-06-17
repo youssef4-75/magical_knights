@@ -11,14 +11,13 @@ class ShapeMixin(Mixin):
         self.__animation_active: bool
         self.__color: str|tuple|pg.Color|None
 
-    @staticmethod
     def start(self, width, height, color):
         self.__surf = pg.Surface((width, height))
         self.__color = color
         if color is not None: 
             self.__surf.fill(color)
         self.__animation_active = False
-    
+
     @property
     def surf(self):
         if self.__animation_active:

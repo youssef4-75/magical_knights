@@ -17,7 +17,6 @@ class ConsciousMixin:
         self.__keys_actions: dict[list[int], tuple[Callable, int, int, list[int]]]
         self.__console: dict[str, int]
 
-    @staticmethod
     def start(self, console, keys_action: dict|None=None, **kwargs):
         if keys_action is None:
             keys_action = {}

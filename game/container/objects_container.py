@@ -28,6 +28,8 @@ class ObjectsContainer(OrderedLake):
                     interacted.add((p1, p2))
                     InteractionsRegistryManager.default(p1, p2)
                     InteractionsRegistryManager.map(p1.typeIdentifier(), p2.typeIdentifier())(p1, p2)
+                p1.detecting(p2.rect)
+                p2.detecting(p1.rect)
         
     def garbage_collect(self):
         removing: list[GameObject] = []

@@ -8,7 +8,6 @@ class MotionMixin(Mixin, Pointable):
         self.__rect: pg.Rect; self.__vel: Vector; 
         self.__accel: Vector; self.__speed: int
 
-    @staticmethod
     def start(self, left, top, width, height, 
             speed, vel: Vector|None=None, 
             accel: Vector|None=None):
