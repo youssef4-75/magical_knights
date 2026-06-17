@@ -1,9 +1,8 @@
 
-from game import GameManager
-from utils import PLAYER_CLASS
-
-from game.plugin import Plugin
 from ._player_displayer import PlayerDisplayer
+from ..game import GameManager, plugin
+from ..utils import PLAYER_CLASS
+
 
 
 

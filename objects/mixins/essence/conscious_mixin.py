@@ -6,8 +6,8 @@ import pygame as pg
 from .life_mixin import LifeMixin
 from .motion_mixin import MotionMixin
 
-from types_tools import Action
-from utils import Vector
+from ....types_tools import Action
+from ....utils import Vector
 
 
 

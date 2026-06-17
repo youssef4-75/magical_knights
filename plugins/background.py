@@ -1,6 +1,6 @@
 
 from pygame import Rect, image, transform
-from game.plugin import Plugin
+from ..game import Plugin
 
 
 

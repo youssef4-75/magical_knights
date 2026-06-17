@@ -1,7 +1,7 @@
 
 
-from utils import ENERGY_CLASS
-from objects import Energy
+from ...utils import ENERGY_CLASS
+from ...objects import Energy
 
 from .tools import register
 

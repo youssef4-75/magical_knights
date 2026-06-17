@@ -1,7 +1,7 @@
 
-from objects import Player
-from utils import PLAYER_CLASS, TOUCH_DAMAGE
 from .tools import register
+from ...objects import Player
+from ...utils import PLAYER_CLASS, TOUCH_DAMAGE
 
 
 @register(PLAYER_CLASS, PLAYER_CLASS)

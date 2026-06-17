@@ -1,6 +1,6 @@
 import pygame as pg
 
-from utils import Mixin,  Pointable, K, SPEED_LIMIT,  Vector
+from ....utils import Mixin,  Pointable, K, SPEED_LIMIT,  Vector
 
 
 class MotionMixin(Mixin, Pointable):

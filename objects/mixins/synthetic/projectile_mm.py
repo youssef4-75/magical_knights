@@ -1,5 +1,4 @@
-import pygame as pg
-from utils import Vector
+
 from ..essence.motion_mixin import MotionMixin
 
 

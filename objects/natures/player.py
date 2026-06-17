@@ -3,7 +3,7 @@ import pygame as pg
 from ..mixins import ConsciousMixin
 from ..game_object import GameObject
 
-from utils import MAX_HP, MAX_MP, PLAYER_CLASS, PLAYER_SIZE, SPEED, ENERGY_SIZE
+from ...utils import MAX_HP, MAX_MP, PLAYER_CLASS, PLAYER_SIZE, SPEED, ENERGY_SIZE
 
 
 class Player(GameObject, ConsciousMixin):

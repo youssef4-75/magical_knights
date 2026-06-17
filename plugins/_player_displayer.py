@@ -6,8 +6,8 @@
 from pygame import Color, Rect, Surface
 from typing import Callable
 
-from game import GameManager
-from objects import Player
+from ..game import GameManager
+from ..objects import Player
 
 
 

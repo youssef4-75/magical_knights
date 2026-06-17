@@ -1,7 +1,7 @@
 
 
 
-from utils import Mixin
+from ....utils import Mixin
 
 
 class LifeMixin(Mixin):

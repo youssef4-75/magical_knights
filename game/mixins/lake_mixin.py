@@ -1,9 +1,9 @@
 
 
-
-from objects.game_object import GameObject
-from types_tools import ObjectCreator
 from ..container import ObjectsContainer
+
+from ...objects import GameObject
+from ...types_tools import ObjectCreator
 
 
 class LakeMixin:

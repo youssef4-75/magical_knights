@@ -1,6 +1,6 @@
 from ..game_object import GameObject
 
-from utils import MAX_HP, MAX_MP, MATERIAL_CLASS, DEFAULT_MATERIAL_HEALTH
+from ...utils import MAX_HP, MAX_MP, MATERIAL_CLASS, DEFAULT_MATERIAL_HEALTH
 
 
 class Material(GameObject):

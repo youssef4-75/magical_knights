@@ -1,9 +1,9 @@
 
 
 
-from utils import ENERGY_CLASS, MATERIAL_CLASS
 from .tools import reclassify, register
-from objects import Energy, Material
+from ...utils import ENERGY_CLASS, MATERIAL_CLASS
+from ...objects import Energy, Material
 
 @register(MATERIAL_CLASS, ENERGY_CLASS)
 def Energy2Material(_material: Material, _energy: Energy):

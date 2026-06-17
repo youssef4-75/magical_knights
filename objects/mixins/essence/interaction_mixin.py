@@ -2,7 +2,7 @@
 from typing import Any
 from pygame import Rect
 
-from utils import Mixin
+from ....utils import Mixin
 
 
 class InteractionMixin(Mixin):

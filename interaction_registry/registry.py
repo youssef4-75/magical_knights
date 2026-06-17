@@ -1,6 +1,6 @@
-from objects import GameObject
-from utils import Vector, REPULSE
 from .interactions_dictionary import registry
+from ..objects import GameObject
+from ..utils import Vector, REPULSE
 
 
 

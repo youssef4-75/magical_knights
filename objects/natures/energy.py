@@ -2,11 +2,9 @@
 import pygame as pg
 
 from ..mixins.synthetic import ProjectileMM, BallSM
-from utils import Vector
-
-from utils import ENERGY_SIZE, ENERGY_CLASS, DEFAULT_ENERGY_MANA
-
 from ..game_object import GameObject
+
+from ...utils import Vector, ENERGY_SIZE, ENERGY_CLASS, DEFAULT_ENERGY_MANA
 
 class Energy(BallSM, ProjectileMM, GameObject):
     def __init__(self, init_pos, speed, direction: Vector, TTL: int = 200, color="red", MP=DEFAULT_ENERGY_MANA):

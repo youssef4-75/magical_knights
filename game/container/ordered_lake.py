@@ -1,9 +1,9 @@
 
 
 from typing import Literal
-from utils.pointable import Pointable
-from .lake import Lake
 from icecream import ic
+from .lake import Lake
+from ...utils import Pointable
 
 class OrderedLake(Lake):
     def __init__(self, *objects: Pointable) -> None:

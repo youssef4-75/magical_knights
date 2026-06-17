@@ -3,7 +3,7 @@
 
 from abc import ABC, abstractmethod
 
-from utils.variables import EDGE_EXPAND
+from ..utils import EDGE_EXPAND
 
 from .mixins import (
     ConsciousMixin, InteractionMixin, 
