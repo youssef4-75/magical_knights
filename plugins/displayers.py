@@ -1,6 +1,6 @@
 
 from ._player_displayer import PlayerDisplayer
-from ..game import GameManager, plugin
+from ..game import GameManager, Plugin
 from ..utils import PLAYER_CLASS
 
 

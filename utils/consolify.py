@@ -1,4 +1,4 @@
-from types_tools import ObjectCreator
+from ..types_tools import ObjectCreator
 
 
 def consolify(up, down, left, right):
