@@ -8,7 +8,7 @@ ENERGY_SPEED = 10
 
 FRAME_SPEED = 20
 
-K = 0.2
+K_FRICTION = 0.2
 
 MAX_HP = 100
 MAX_MP = 100
@@ -24,6 +24,6 @@ SPEED_LIMIT = 70
 TOUCH_DAMAGE = 3
 
 # ---- classes
-PLAYER_CLASS = 0
-ENERGY_CLASS = 1
-MATERIAL_CLASS = 2
+PLAYER_CLASS = "player_game_env"
+ENERGY_CLASS = "energy_game_env"
+MATERIAL_CLASS = "material_game_env"

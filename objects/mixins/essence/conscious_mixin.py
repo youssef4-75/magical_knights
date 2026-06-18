@@ -87,7 +87,7 @@ class ConsciousMixin:
 
     def to_motion_mixin(self, vector: Vector):
         assert isinstance(self, MotionMixin)
-        self.move(vector)
+        self.move_in_direction(vector)
 
     def to_life_mixin(self, price: int):
         assert isinstance(self, LifeMixin)

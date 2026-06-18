@@ -1,6 +1,6 @@
 import pygame as pg
 
-from ....utils import Mixin,  Pointable, K, SPEED_LIMIT,  Vector
+from ....utils import Mixin,  Pointable, K_FRICTION, SPEED_LIMIT,  Vector
 
 
 class MotionMixin(Mixin, Pointable):
@@ -33,10 +33,10 @@ class MotionMixin(Mixin, Pointable):
         return self.__speed
 
     def advance_rect(self):
-        self.__accel -= K * self.__vel
+        self.__accel -= K_FRICTION * self.__vel
         self.__vel += self.__accel
         self.__vel.limit_ip(SPEED_LIMIT)
-        self.__rect.move_ip(self.__vel.x, self.__vel.y)
+        self.move(self.__vel)
         self.__accel = Vector()
 
     def x(self):
@@ -46,10 +46,13 @@ class MotionMixin(Mixin, Pointable):
         return self.rect.y
 
     # ------ 
-    def move(self, direction: Vector):
-        direction = direction.normalize() * self.speed
-        direction.limit_ip(SPEED_LIMIT)
-        self.__rect.move_ip(direction.x, direction.y)
+    def move_in_direction(self, direction: Vector):
+        velocity = direction.normalize() * self.speed
+        self.move(velocity)
+
+    def move(self, velocity: Vector):
+        velocity.limit_ip(SPEED_LIMIT)
+        self.__rect.move_ip(velocity.x, velocity.y)
 
     def set_accel(self, accel: Vector):
         self.__accel += accel
