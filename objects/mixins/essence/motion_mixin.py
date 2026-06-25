@@ -1,12 +1,10 @@
+from icecream import ic
 import pygame as pg
 
 from ....utils import Mixin,  Pointable, K_FRICTION, SPEED_LIMIT,  Vector
 
 
 class MotionMixin(Mixin, Pointable):
-    def __init__(self) -> None:
-        self.__rect: pg.Rect; self.__vel: Vector; 
-        self.__accel: Vector; self.__speed: int
 
     def start(self, left, top, width, height, 
             speed, vel: Vector|None=None, 
@@ -57,6 +55,6 @@ class MotionMixin(Mixin, Pointable):
     def set_accel(self, accel: Vector):
         self.__accel += accel
 
-    def set_speed(self, value: int):
+    def set_speed(self, value: int, SPEED_LIMIT: int = SPEED_LIMIT):
         if value < SPEED_LIMIT:
             self.__speed = value

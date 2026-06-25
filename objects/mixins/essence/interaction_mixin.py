@@ -6,9 +6,6 @@ from ....utils import Mixin
 
 
 class InteractionMixin(Mixin):
-    def __init__(self) -> None:
-        self.__data: dict; self.__aura: int
-        self.__detrect: Rect
 
     def start(self, motion_rect: Rect, aura: int=0, **kwargs):
         self.__detrect = Rect(0, 0, motion_rect.width + 2*aura, motion_rect.height + 2*aura, )

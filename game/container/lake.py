@@ -26,3 +26,4 @@ class Lake[E]:
 
     def __len__(self):
         return len(self.objects)
+    

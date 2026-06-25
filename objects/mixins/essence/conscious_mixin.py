@@ -13,25 +13,33 @@ from ....utils import Vector
 
 
 class ConsciousMixin:
-    def __init__(self) -> None:
-        self.__keys_actions: dict[list[int], tuple[Callable, int, int, list[int]]]
-        self.__console: dict[str, int]
-
-    def start(self, console, keys_action: dict|None=None, **kwargs):
+    def start(self, console: dict|None = None, keys_action: dict|None=None, **kwargs):
         if keys_action is None:
             keys_action = {}
-        self.__keys_actions = keys_action
+        setattr(self, "__keys_actions", keys_action)
         for key, action in kwargs.items():
-            self.__keys_actions[key] = action
+            self.keys_actions[key] = action
         self.__console = console
+        if console is None: 
+            console = {
+            "up": -1,
+            "down": -1,
+            "left": -1,
+            "right": -1,
+        }
+        setattr(self, "__console", console)
 
     @property 
     def console(self):
-        return self.__console
+        return getattr(self, "__console")
+    
+    @property
+    def keys_actions(self):
+        return getattr(self, "__keys_actions", {})
 
     def act(self, **context):
         keys_map = pg.key.get_pressed()
-        for keys, (action, mana, cooldown, last_time_used) in self.__keys_actions.items():
+        for keys, (action, mana, cooldown, last_time_used) in self.keys_actions.items():
             if last_time_used[0]<cooldown: 
                 last_time_used[0] += 1
                 continue
@@ -60,7 +68,7 @@ class ConsciousMixin:
         self.to_motion_mixin(vector)
 
     def add_action(self, *keys: int, mana: int, cooldown: int, initial_delay: int, action: Action): 
-        self.__keys_actions[keys] = [action, mana, cooldown, [cooldown-initial_delay]]
+        self.keys_actions[keys] = [action, mana, cooldown, [cooldown-initial_delay]]
 
     def add_actions(self, map: dict[tuple[tuple[int]|int, int, int, int], Action]):
         for (keys, mana, cooldown, initial_delay), action in map.items():
@@ -73,10 +81,6 @@ class ConsciousMixin:
             self.console.update(console)
         self.console.update(kwargs)
 
-    @property 
-    def actions(self):
-        return self.__keys_actions
-    
     def my_action(self, *keys, mana, cooldown, initial_delay):
         def deco(function):
             self.add_action(*keys,

@@ -1,9 +1,12 @@
 
 
+from typing import Callable, TypeVar
+
+
 from ..container import ObjectsContainer
 
 from ...objects import GameObject
-from ...types_tools import ObjectCreator
+from ...types_tools import ObjectCreator, Interaction
 
 
 class LakeMixin:
@@ -18,3 +21,6 @@ class LakeMixin:
 
     def append(self, *objects: GameObject):
         self.lake.add(*objects)
+
+    def add_default_interactions_lakeM(self, *interactions: Interaction):
+        self.lake.add_interaction(*interactions)

@@ -5,8 +5,6 @@ from ....utils import Mixin
 
 
 class LifeMixin(Mixin):
-    def __init__(self) -> None:
-        self.__TTL: int; self.__HP: int; self.__MP: int 
 
     # @staticmethod
     def start(self, TTL: int, HP: int, MP: int):
@@ -39,10 +37,10 @@ class LifeMixin(Mixin):
         self.__MP -= MP_amount 
         return True 
 
-    def die(self):
+    def die(self, game=None):
         # print(f"{self} has died")
         ...
 
-    def born(self):
+    def born(self, game=None):
         # print(f"{self} has born")
         ...

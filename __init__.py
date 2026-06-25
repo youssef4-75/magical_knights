@@ -6,3 +6,7 @@ from .objects import *
 from .utils import *
 from .plugins import *
 from .interaction_registry import *
+
+from ._test import game_1_main
+
+# game_1_main()

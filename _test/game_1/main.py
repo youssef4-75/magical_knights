@@ -1,6 +1,6 @@
 import pygame as pg
 
-from game import GameManager
+from ...game import GameManager
 
 
 

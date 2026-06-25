@@ -1,4 +1,7 @@
 
+from typing import Callable, TypeVar
+
+from ...types_tools import Interaction
 
 
 
@@ -13,6 +16,7 @@ from ...objects import GameObject
 class ObjectsContainer(OrderedLake):
     def __init__(self, *objects: GameObject) -> None:
         super().__init__(*objects)
+        self.default: list[Interaction] = []
 
     def __iter__(self):
         self.objects: list[GameObject]
@@ -28,22 +32,29 @@ class ObjectsContainer(OrderedLake):
                 p1: GameObject; p2: GameObject
                 if (p1, p2) not in interacted and p1.rect.colliderect(p2.rect):
                     interacted.add((p1, p2))
-                    InteractionsRegistryManager.default(p1, p2)
+                    for interact in self.default:
+                        interact(p1, p2)
                     InteractionsRegistryManager.map(p1.typeIdentifier(), p2.typeIdentifier())(p1, p2)
                 p1.detecting(p2.rect)
                 p2.detecting(p1.rect)
         
-    def garbage_collect(self):
+    def garbage_collect(self, game):
         removing: list[GameObject] = []
         for obj in self.objects:
             if not obj.is_alive():
                 removing.append(obj)
         for _ in removing:
             self.remove(_)
-            _.die()
+            _.die(game)
         # print(f"left: {len(self)}")
     
     def add(self, *elements: GameObject):
         for element in elements:
             element.born()
         return super().add(*elements)
+
+
+    def add_interaction(self, *interactions: Interaction):
+        for interaction in interactions:
+            assert isinstance(interaction, Callable)
+        self.default.extend(interactions)

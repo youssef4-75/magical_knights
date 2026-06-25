@@ -14,6 +14,7 @@ from .screen import Window
 class GameManager(WindowMixin, LakeMixin, PluginMixin):
     def __init__(self, win: Window) -> None:
         super().__init__(win)
+        self.add_default_interactions_lakeM(*self.interactions)
 
         
     @classmethod
@@ -32,11 +33,12 @@ class GameManager(WindowMixin, LakeMixin, PluginMixin):
         for gobj in self.lake:
             self.draw(gobj.surf, gobj.rect)
             if gobj.is_conscious():
-                # print(p.actions)
-                gobj.act(player=gobj, game=self)
+                for behaviour in self.behaviours:
+                    behaviour(gobj)
+                gobj.act(acter=gobj, game=self)
 
         self.lake.interaction()
-        self.lake.garbage_collect()
+        self.lake.garbage_collect(self)
         self.window.display()
         self.window.fill((0, 0, 0))
 
@@ -50,3 +52,4 @@ class GameManager(WindowMixin, LakeMixin, PluginMixin):
         for event in self.window.events():
             if event.type == pg.KEYDOWN:
                 yield event
+

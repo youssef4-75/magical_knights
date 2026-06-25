@@ -1,14 +1,11 @@
 from .interactions_dictionary import registry
 from ..objects import GameObject
-from ..utils import Vector, REPULSE
+from ..utils import Vector, REPULSE, get_interaction_normal
 
 
 
 class InteractionsRegistryManager:
     registry = registry
-
-    def __init__(self, map) -> None:
-        pass
 
     @staticmethod
     def map(class1, class2):
@@ -29,9 +26,10 @@ class InteractionsRegistryManager:
     def default(obj1: GameObject, obj2: GameObject):
         vector12 = Vector(*obj1.rect.center) - Vector(*obj2.rect.center)
         r = vector12.magnitude()
+        # normal = get_interaction_normal(obj1.rect, obj2.rect)
         if r==0:
             return 
-        direction = (REPULSE/r) * vector12.normalize()
+        direction = (REPULSE/r) * vector12.normalize() # normal 
         obj1.set_accel(direction)
         obj2.set_accel(-direction)
 

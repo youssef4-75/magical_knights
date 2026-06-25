@@ -16,3 +16,9 @@ class Plugin(ABC):
     @abstractmethod
     def init(self, game):
         ...
+
+    def behaviour(self, gobj):
+        ...
+
+    def interaction(self, gobj1, gobj2):
+        ...

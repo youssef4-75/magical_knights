@@ -5,10 +5,6 @@ from ....utils import Animation, AnimationSet, Mixin, FRAME_SPEED
 
 
 class ShapeMixin(Mixin):
-    def __init__(self, ):
-        self.__surf: pg.Surface|Animation|AnimationSet; 
-        self.__animation_active: bool
-        self.__color: str|tuple|pg.Color|None
 
     def start(self, width, height, color):
         self.__surf = pg.Surface((width, height))

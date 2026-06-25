@@ -1,7 +1,7 @@
 from ..types_tools import ObjectCreator
 
 
-def consolify(up, down, left, right):
+def consolify(up=-1, down=-1, left=-1, right=-1):
     return {
             "up": up,
             "down": down,
