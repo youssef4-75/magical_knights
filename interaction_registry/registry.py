@@ -30,7 +30,7 @@ class InteractionsRegistryManager:
         if r==0:
             return 
         direction = (REPULSE/r) * vector12.normalize() # normal 
-        obj1.set_accel(direction)
-        obj2.set_accel(-direction)
+        obj1.add_accel(direction)
+        obj2.add_accel(-direction)
 
 

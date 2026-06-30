@@ -13,6 +13,9 @@ from ....utils import Vector
 
 
 class ConsciousMixin:
+    def set_constant_cm(self, **kwargs):
+        return
+
     def start(self, console: dict|None = None, keys_action: dict|None=None, **kwargs):
         if keys_action is None:
             keys_action = {}

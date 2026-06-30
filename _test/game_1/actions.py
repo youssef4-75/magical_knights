@@ -9,7 +9,7 @@ grimoire2 = {}
 
 @actionify_deco(grimoire1, pg.K_o, mana=10, cooldown=120, initial_delay=10)
 def jump(acter: Player, *a, **k):
-    acter.set_accel(10*Vector.up())
+    acter.add_accel(10*Vector.up())
 
 
 @actionify_deco(grimoire1, pg.K_p, mana=0, cooldown=120, initial_delay=10)

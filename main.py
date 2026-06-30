@@ -41,7 +41,7 @@ def player():
     p = Player("you", "blue", Vector.random(*win_size).to_tuple(), control2)
     @p.my_action(pg.K_p, mana=10, cooldown=100, initial_delay=20)
     def jump(player: Player, *a, **k):
-        player.set_accel(10*Vector.up())
+        player.add_accel(10*Vector.up())
     # p.add_action(pg.K_p, action=jump)
     return p
 

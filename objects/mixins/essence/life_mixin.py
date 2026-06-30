@@ -5,6 +5,8 @@ from ....utils import Mixin
 
 
 class LifeMixin(Mixin):
+    def set_constant_lm(self, **kwargs):
+        return
 
     # @staticmethod
     def start(self, TTL: int, HP: int, MP: int):

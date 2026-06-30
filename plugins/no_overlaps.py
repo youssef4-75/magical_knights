@@ -13,7 +13,7 @@ class WithNoOverlaps(Plugin):
         ...
 
     def init(self, game: GameManager):
-        print("started this plugin")
+       
         ...
 
     def interaction(self, gobj1, gobj2):

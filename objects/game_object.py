@@ -17,7 +17,10 @@ class GameObject(MotionMixin, ShapeMixin, LifeMixin, InteractionMixin, ABC):
             TTL=float("inf"), HP=100, 
             MP=100, vel=None, accel=None,
             aura=0, **kwargs) -> None:
-
+        self.set_constant_mm(**kwargs)
+        self.set_constant_sm(**kwargs)
+        self.set_constant_lm(**kwargs)
+        self.set_constant_im(**kwargs)
         MotionMixin.start(self, left, top, 
                         width, height, 
                         speed, vel, accel)

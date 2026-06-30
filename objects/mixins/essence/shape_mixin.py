@@ -6,6 +6,9 @@ from ....utils import Animation, AnimationSet, Mixin, FRAME_SPEED
 
 class ShapeMixin(Mixin):
 
+    def set_constant_sm(self, *, FRAME_SPEED=FRAME_SPEED, **_):
+        self.__FRAME_SPEED = FRAME_SPEED
+
     def start(self, width, height, color):
         self.__surf = pg.Surface((width, height))
         self.__color = color
@@ -27,9 +30,9 @@ class ShapeMixin(Mixin):
         if not self.__animation_active:
             return
 
-    def attach_animation(self, animation: Animation|AnimationSet, frame_speed=FRAME_SPEED):
+    def attach_animation(self, animation: Animation|AnimationSet):
         if isinstance(animation, Animation):
-            self.__surf = AnimationSet.new(animation, frame_speed)
+            self.__surf = AnimationSet.new(animation, self.__FRAME_SPEED)
         else: 
             self.__surf = animation
         self.__animation_active = True
