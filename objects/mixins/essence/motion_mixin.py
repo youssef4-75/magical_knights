@@ -8,7 +8,6 @@ from ....utils import Mixin,  Pointable, SPEED_LIMIT,  Vector
 class MotionMixin(Mixin, Pointable):
 
     def set_constant_mm(self, *, SPEED_LIMIT=SPEED_LIMIT, **_):
-        print("here")
         self.__SPEED_LIMIT = SPEED_LIMIT
 
     def start(self, left, top, width, height, 

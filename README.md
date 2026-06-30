@@ -167,7 +167,7 @@ from utils import Vector
 
 @player.my_action(pg.K_SPACE, mana=10, cooldown=60, initial_delay=0)
 def dash(player, **ctx):
-    player.set_accel(15 * Vector.up())
+    player.add_accel(15 * Vector.up())
 ```
 
 Or define actions in a shared grimoire dict using `actionify_deco` and attach them with `attach_grimoire` (see `_test/game_1/actions.py`).
